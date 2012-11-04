@@ -40,3 +40,21 @@ gem 'jquery-rails'
 
 # To use debugger
 gem 'haml'
+
+# add to end of Gemfile
+group :test, :development do
+  gem 'cucumber-rails'
+  gem 'cucumber-rails-training-wheels' # some pre-fabbed step definitions  
+  gem 'database_cleaner' # to clear Cucumber's test database between runs
+  gem 'capybara'         # lets Cucumber pretend to be a web browser
+  gem 'launchy'          # a useful debugging aid for user stories
+end
+
+group :test, :development do
+  gem 'ZenTest', "~> 4.4.2"
+  gem 'autotest-rails'
+
+  gem 'rails3-generators' #mainly for factory_girl & simple_form at this point
+  gem 'factory_girl_rails'
+end
+
