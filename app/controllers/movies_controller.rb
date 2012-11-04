@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
 
   def director
     id      = params[:id].to_i
-    @movies = Movie.related_movies(id)
+    @movies = Movie.find(id).related_movies
   end
   
   def show
