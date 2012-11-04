@@ -4,6 +4,7 @@ describe MoviesController do
   describe 'Find movies with same director' do
     before(:each) do
       @movie = FactoryGirl.create(:movie)
+      @movie_with_no_director = FactoryGirl.create(:movie, director: nil)
     end
   
     it 'should call the model method that finds the movies given a director' do
@@ -35,6 +36,11 @@ describe MoviesController do
       get :director, {:id => @movie.id}
       # And we verify the view has the 'movies' variable, which equals our mocks
       assigns(:movies).should == fake_results
+    end
+    it 'should redirect to home page when there is no director info' do
+      Movie.any_instance.stub(:related_movies)
+      get :director, {:id => @movie_with_no_director.id}
+      response.should redirect_to(movies_path)
     end
   end
 end
